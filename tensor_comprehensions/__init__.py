@@ -291,7 +291,7 @@ def make_load_from_cache_options_factory(cache_filename: str) -> (
         loaded = cache.load(tc, entry_point, inputs, 1)
         if len(loaded) > 0:
             return loaded[0]
-        return None
+        return MappingOptions('naive')
 
     return generate
 
@@ -379,7 +379,7 @@ class TC(object):
 
             mapping_options = tc_obj.mapping_options_factory(
                 tc_obj.tc, entry_point, *inputs)
-
+            
             assert mapping_options is not None, (
                 "No options found for TC {} ".format(entry_point) +
                 "with inputs of sizes:\n  {}\n".format(
